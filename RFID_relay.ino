@@ -1,6 +1,7 @@
 /************************
  * CREATED BY ELIOPUTTO *
  ************************/
+ /*https://github.com/encarbassot/RFID_relay*/
 
 //para compilar el programa es necesario instalar la libreria:
 //MFRC522 by GithubCommunity
@@ -119,8 +120,10 @@ void setup() {
       EEPROM.write(EEPROM_POS_SELF_DESTRUCT,0);
     #endif
   #else
-    //leer si se ha cometido algun selfDestruct
-    functionsEnabled = EEPROM.read(EEPROM_POS_SELF_DESTRUCT) == 0;
+    #ifdef SELF_DESTRUCT
+      //leer si se ha cometido algun selfDestruct
+      functionsEnabled = EEPROM.read(EEPROM_POS_SELF_DESTRUCT) == 0;
+    #endif
   #endif
 
   Serial.begin(9600);
